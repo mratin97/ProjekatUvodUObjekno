@@ -1,6 +1,2 @@
-Dusan|Mratinkovic|4144564456|Adtresa|06325458|admin|admin|M|123
-Dusan|Mratinkovic|4144564456|Adtresa|06325458|admin|admin|M|123
-Dusan|Mratinkovic|4144564456|Adtresa|06325458|admin|admin|M|123
-Dusan|Mratinkovic|4144564456|Adtresa|06325458|admin|admin|M|123
-Dusan|Mratinkovic|4144564456|Adtresa|06325458|admin|admin|M|123
-Dusan|Mratinkovic|4144564456|Adtresa|06325458|admin|admin|M|123
+marko|mrako|123|123|123|123|123|123|123
+dsa|das|sss|sss|sss|sss|sss|sss|sss
