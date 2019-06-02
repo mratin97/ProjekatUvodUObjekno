@@ -1,9 +1,11 @@
 package paket1;
 
+import java.util.ArrayList;
 
+import pregled.Pregled;
 
 public class Lekar extends Zaposleni {
-	
+	private ArrayList<Pregled> pregledi;
 	protected String specijalizacija;
 	sluzba ImeSluzbe;
 	public Lekar() {
@@ -13,10 +15,10 @@ public class Lekar extends Zaposleni {
 	}
 
 	public Lekar(String ime, String prezime, String jmbg, String adresa, String brojTelefona, String korisnickoIme,
-			String lozinka, String pol,sluzba imesluzbe, int plata,String specijalizacija) {
+			String lozinka, String pol,String imesluzbe, int plata,String specijalizacija) {
 		super(ime, prezime, jmbg, adresa, brojTelefona, korisnickoIme, lozinka, pol, plata);
 		this.specijalizacija= specijalizacija;
-		this.ImeSluzbe=imesluzbe;
+		
 	}
 
 	public String getSpecijalizacija() {
@@ -34,8 +36,11 @@ public class Lekar extends Zaposleni {
 				+ ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", pol=" + pol + "]";
 	}
 	
-
-
+	
+	public String listaPregleda(){
+		
+		return pregledi.toString();
+	}
 
 	
 }

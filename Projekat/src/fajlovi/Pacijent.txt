@@ -1,0 +1,2 @@
+Ilija|Ilija1|12312312|Adresa123|5646545|korisnik|123|M|Marko|
+marko|milinkovic|112312|adresa|02130123|Pacijent1|\sifra|M|Marko|1

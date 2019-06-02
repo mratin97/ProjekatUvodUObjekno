@@ -6,14 +6,14 @@ public class Pregled {
 	
 	protected Pacijent pacijent;
 	protected String opis;
-	protected status Status;
+	protected String Status;
 	protected String IdPregleda;
-	protected Date Termin;
+	protected String Termin;
 	protected Lekar Doktor;
 	
 	
 	
-	public Pregled(Pacijent pacijent, String opis, status status, String idPregleda, Date termin, Lekar doktor) {
+	public Pregled(Pacijent pacijent, String opis, String status, String idPregleda, String termin, Lekar doktor) {
 		super();
 		this.pacijent = pacijent;
 		this.opis = opis;
@@ -49,13 +49,13 @@ public class Pregled {
 
 
 
-	public status getStatus() {
+	public String getStatus() {
 		return Status;
 	}
 
 
 
-	public void setStatus(status status) {
+	public void setStatus(String status) {
 		Status = status;
 	}
 
@@ -73,13 +73,13 @@ public class Pregled {
 
 
 
-	public Date getTermin() {
+	public String getTermin() {
 		return Termin;
 	}
 
 
 
-	public void setTermin(Date termin) {
+	public void setTermin(String termin) {
 		Termin = termin;
 	}
 

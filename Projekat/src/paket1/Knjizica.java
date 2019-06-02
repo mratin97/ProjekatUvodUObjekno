@@ -3,12 +3,12 @@ import java.sql.Date;
 public class Knjizica {
 
 	
-	protected int broj;
-	protected Date datumIsteka;
+	protected String broj;
+	protected String datumIsteka;
 	protected String kategorija;
 	
 	
-	public Knjizica(int broj, Date datumIsteka, String kategorija) {
+	public Knjizica(String broj, String datumIsteka, String kategorija,Pacijent pacijent) {
 		super();
 		this.broj = broj;
 		this.datumIsteka = datumIsteka;
@@ -16,22 +16,22 @@ public class Knjizica {
 	}
 
 
-	public int getBroj() {
+	public String getBroj() {
 		return broj;
 	}
 
-
-	public void setBroj(int broj) {
+	
+	public void setBroj(String broj) {
 		this.broj = broj;
 	}
 
 
-	public Date getDatumIsteka() {
+	public String getDatumIsteka() {
 		return datumIsteka;
 	}
 
 
-	public void setDatumIsteka(Date datumIsteka) {
+	public void setDatumIsteka(String datumIsteka) {
 		this.datumIsteka = datumIsteka;
 	}
 
