@@ -51,13 +51,43 @@ public class DomZdravlja {
 	public ArrayList<Lekar> getLekar() {
 		return lekar;
 	}
-
-
+	public ArrayList<Pacijent> getPacijent() {
+		return pacijenti;
+	}
+	public ArrayList<Pregled> getPregled() {
+		return pregledi;
+	}
 
 	public void obrisiLekara(Lekar lekari) {
 		this.lekar.remove(lekari);
 	}
-
+	public MedSestra login(String korisnickoIme, String sifra) {
+		for (MedSestra sestra : sestre) {
+			if(sestra.getKorisnickoIme().equals(korisnickoIme) &&
+					sestra.getLozinka().equals(sifra)) {
+				return sestra;
+			}
+		}
+		return null;
+	}
+	public Lekar loginLekar(String korisnickoIme, String sifra) {
+		for (Lekar lekar : lekar) {
+			if(lekar.getKorisnickoIme().equals(korisnickoIme) &&
+					lekar.getLozinka().equals(sifra)) {
+				return lekar;
+			}
+		}
+		return null;
+	}
+	public Pacijent loginPacijent(String korisnickoIme, String sifra) {
+		for (Pacijent pacijent : pacijenti) {
+			if(pacijent.getKorisnickoIme().equals(korisnickoIme) &&
+					pacijent.getLozinka().equals(sifra)) {
+				return pacijent;
+			}
+		}
+		return null;
+	}
 	public MedSestra nadjiProdavca(String korisnickoIme) {
 		for (MedSestra sestra : sestre) {
 			if (sestra.getKorisnickoIme().equals(korisnickoIme)) {

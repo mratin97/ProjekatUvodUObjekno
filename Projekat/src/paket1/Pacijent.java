@@ -27,7 +27,9 @@ public class Pacijent extends Korisnik{
 	public void setIzabraniLekar(String izabranilekar) {
 		this.izabraniLekar = izabranilekar;
 	}
-
+	public Knjizica getPodaciOKnjizici() {
+		return podaciOKnjizici;
+	}
 	@Override
 	public String toString() {
 		return "Pacijent [izabraniLekar=" + izabraniLekar + ", ime=" + ime + ", prezime=" + prezime + ", jmbg=" + jmbg
