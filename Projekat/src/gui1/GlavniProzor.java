@@ -4,11 +4,16 @@ package gui1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JToolBar;
 
+import gui.formeZaDodavanje.SestreForme;
+import gui.formeZaIzmenuIDodavanje.ZaposleniForma;
 
 
 /*
@@ -23,7 +28,10 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem kompozicijeItem;
 	private JMenu osobljeMenu;
 	private JMenuItem prodavciItem;
-	
+	private JToolBar mainToolbar = new JToolBar();
+	private JButton btnAdd = new JButton();
+	private JButton btnEdit = new JButton();
+	private JButton btnDelete = new JButton();
 
 	
 	public GlavniProzor() {
@@ -38,6 +46,8 @@ public class GlavniProzor extends JFrame {
 	}
 	
 	private void initMenu() {
+		
+		
 		this.mainMenu = new JMenuBar();
 		this.artikliMenu = new JMenu("Sestre");
 		this.artikliItem = new JMenuItem("Prikazi sestre");
@@ -64,6 +74,7 @@ public class GlavniProzor extends JFrame {
 				setVisible(true);
 			}
 		});
+	
 		
 	}
 }

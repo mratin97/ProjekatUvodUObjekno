@@ -5,6 +5,7 @@ import domZdravlja.DomZdravlja;
 import gui.formeZaPrikaz.PrikazPacijenata;
 import gui.formeZaPrikaz.PrikazPregleda;
 import paket1.Lekar;
+import paket1.*;
 import paket1.MedSestra;
 import gui1.GlavniProzor;
 import gui1.LoginProzor;
@@ -21,8 +22,7 @@ public class Main {
 		//MedSestra testsestra = new MedSestra("Dusan", "Mratinkovic", "4144564456", "Adtresa", "06325458", "admin", "admin", "M","sluzba",123);
 		//dom.dodajProdavca(testsestra);
 		//dom.snimiZaposlene("medicinskasestra.txt");
-		PrikazPregleda prikaz=new PrikazPregleda(dom);
-		prikaz.setVisible(true);
+		
 		LoginProzor prozor=new LoginProzor(dom);
 		prozor.setVisible(true);
 	}

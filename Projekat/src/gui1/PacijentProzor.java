@@ -8,62 +8,61 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import gui.formeZaIzmenuIDodavanje.ZaposleniForma;
+import gui.formeZaPrikaz.KompozicijeProzor;
 import gui.formeZaPrikaz.PrikazPregleda;
+import paket1.Pacijent;
 import domZdravlja.*;
 
-/*
- * 	Glavni prozor aplikacije. 
- * 	Prikazuje se nakon uspesne prijave i sadrzi meni za pristup formama za rukovanje entitetima.
- */
+
 public class PacijentProzor extends JFrame {
 
 	private JMenuBar mainMenu;
-	private JMenu artikliMenu;
-	private JMenuItem artikliItem;
-	private JMenuItem kompozicijeItem;
-	private JMenu osobljeMenu;
-	private JMenuItem prodavciItem;
+	private JMenu Meni;
+	private JMenuItem PrikazPregleda;
+	public String korime;
 	
-	DomZdravlja dom=new DomZdravlja();
 	
-	public PacijentProzor() {
-		
-		setTitle("Prodavnica - ");
+
+	private DomZdravlja dom;
+	
+	public  PacijentProzor(DomZdravlja dom,Pacijent prijavljenikorisnik ) {
+		this.dom=dom;
+		setTitle("Pacijenti - ");
 		setSize(500, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		initMenu();
-		initActions();
+		initActions(prijavljenikorisnik);
+		
 	}
 	
 	private void initMenu() {
 		this.mainMenu = new JMenuBar();
-		this.artikliMenu = new JMenu("Pacijent");
-		this.artikliItem = new JMenuItem("Prikazi pregleda");
-		this.kompozicijeItem = new JMenuItem("Zakazivanje");
-		this.osobljeMenu = new JMenu("Osoblje");
-		this.prodavciItem = new JMenuItem("123a");
+		this.Meni = new JMenu("Meni");
+		this.PrikazPregleda = new JMenuItem("Prikazi pregleda");
 		
-		this.artikliMenu.add(artikliItem);
-		this.artikliMenu.add(kompozicijeItem);
-		this.osobljeMenu.add(prodavciItem);
 		
-		this.mainMenu.add(artikliMenu);
-		this.mainMenu.add(osobljeMenu);
+		this.Meni.add(PrikazPregleda);
+		
+		
+		this.mainMenu.add(Meni);
+		
 		
 		setJMenuBar(this.mainMenu);
 	}
 	
-	private void initActions() {
-		// Klikom na stavke menija otvaraju se odgovarajuce forme za prikaz
-		artikliItem.addActionListener(new ActionListener() {
+	private void initActions(Pacijent prijavljenikorisnik) {
+		this.dom=dom;
+		PrikazPregleda.addActionListener(new ActionListener( ) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PrikazPregleda pk= new PrikazPregleda(dom);
-				pk.setVisible(true);
+				PrikazPregleda pp = new PrikazPregleda(dom,prijavljenikorisnik);
+				pp.setVisible(true);
 			}
 		});
-		
+	
 	}
 }

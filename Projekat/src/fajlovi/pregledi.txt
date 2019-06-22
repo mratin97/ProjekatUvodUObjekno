@@ -1,1 +1,6 @@
-korisnik|123|Zakazan|0111|123|marko|
+korisnik|123|Zakazan|960|123|marko
+korisnik|boli me koleno|Zakazan|769|15/12/1000|marko
+korisnik|123|Zatrazen|286|123|marko
+korisnik|123|Zatrazen|649|123|marko
+korisnik|opis|Zatrazen|81|12/12/12|marko
+korisnik|opis1|Zavrsen|968|123|marko

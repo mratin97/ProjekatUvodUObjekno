@@ -1,2 +1,5 @@
-Dusan|Mratinkovic|4144564456|Adtresa|06325458|admin|admin|M|sluzba|123
-1|1|1|1|1|1|1|1|1|1
+Dusan|Mratinkovic|4144564456|Adtresa|06325458|admin|admin|ZENSKI|Sluzbazatehnickeposlove|123
+Marko|Markovic|123123|adresa|213123123|marko|markovic123|MUSKI|Sluzbazatehnickeposlove|123333
+uros|urosevic|123123|adresa|213123|ime|ime|MUSKI|Sluzbazatehnickeposlove|123123
+lazar|laza|123123|123123|123123|lazar|123|MUSKI|Sluzbazatehnickeposlove|123123
+admin|admin|123|123|123|123|123|ZENSKI|SluzbaOpsteMedicine|12313

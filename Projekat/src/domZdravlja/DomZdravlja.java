@@ -8,16 +8,19 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 
-
+import paket1.*;
 import paket1.Lekar;
 import paket1.Knjizica;
 import paket1.Korisnik;
 import paket1.MedSestra;
 import paket1.Pacijent;
+import paket1.Pol;
 import paket1.Zaposleni;
+import paket1.kategorija;
 import paket1.sluzba;
 import pregled.Pregled;
 import pregled.status;
+
 
 import java.util.*;
 public class DomZdravlja {
@@ -34,8 +37,6 @@ public class DomZdravlja {
 		this.lekar=new ArrayList<Lekar>();
 		this.pacijenti=new ArrayList<Pacijent>();
 		this.knjizica=new ArrayList<Knjizica>();
-		//Lekar ime= lekar.get(0);
-		//System.out.println (ime.getIme());
 	}
 	public ArrayList<MedSestra> getSestre() {
 		return sestre;
@@ -56,6 +57,10 @@ public class DomZdravlja {
 	}
 	public ArrayList<Pregled> getPregled() {
 		return pregledi;
+
+	}
+	public ArrayList<Knjizica> getKnjizica() {
+		return knjizica;
 	}
 
 	public void obrisiLekara(Lekar lekari) {
@@ -88,7 +93,7 @@ public class DomZdravlja {
 		}
 		return null;
 	}
-	public MedSestra nadjiProdavca(String korisnickoIme) {
+	public MedSestra nadjiSestru(String korisnickoIme) {
 		for (MedSestra sestra : sestre) {
 			if (sestra.getKorisnickoIme().equals(korisnickoIme)) {
 				return sestra;
@@ -103,6 +108,15 @@ public class DomZdravlja {
 			}
 		}
 		return null;
+		}
+	public Pregled nadjiPregled(String Idpregleda) {
+			for (Pregled pregled : pregledi) {
+				if (pregled.getIdPregleda().equals(Idpregleda)) {
+					return pregled;
+				}
+			}
+			return null;
+		
 	}
 	public Pacijent nadjiPacijenta(String korisnickoIme) {
 		for (Pacijent pacijent : pacijenti) {
@@ -134,12 +148,15 @@ public class DomZdravlja {
 				String brojTelefona = split[4];
 				String korisnickoIme = split[5];
 				String lozinka = split[6];
-				String pol = split[7];
-				String sluzba= split[8];
+				String polInt = split[7];
+				Pol pol = Pol.toPol(polInt);
+				int sluzbaint=sluzba.toInt(split[8]);
+				
+				sluzba sluzbe=sluzba.fromInt(sluzbaint);
 				String platastring=split[9];
 				String specijalizacija=split[10];
 				int plata=Integer.parseInt(platastring);
-				Lekar lekari = new Lekar(ime, prezime, jmbg, adresa, brojTelefona, korisnickoIme, lozinka, pol,sluzba, plata,specijalizacija);
+				Lekar lekari = new Lekar(ime, prezime, jmbg, adresa, brojTelefona, korisnickoIme, lozinka, pol,sluzbe, plata,specijalizacija);
 				lekar.add(lekari);
 			}
 			br.close();
@@ -152,7 +169,7 @@ public class DomZdravlja {
 			File sestreFile = new File("src/fajlovi/" + medsestra);
 			BufferedReader br = new BufferedReader(new FileReader(sestreFile));
 			String line = null;
-			Lekar imelekara= lekar.get(0);
+			
 			while ((line = br.readLine()) != null) {
 				String[] split = line.split("\\|");
 				String ime = split[0];
@@ -162,9 +179,11 @@ public class DomZdravlja {
 				String brojTelefona = split[4];
 				String korisnickoIme = split[5];
 				String lozinka = split[6];
-				String pol = split[7];
-				String izabraniLekar=imelekara.getKorisnickoIme();
-				String knji=split[8];
+				String polInt = split[7];
+				Pol pol = Pol.toPol(polInt);
+				String izabraniLekarstring= split[8];
+				Lekar izabraniLekar=nadjiLekara(izabraniLekarstring);
+				String knji=split[9];
 				Knjizica x=nadjiKnjizicu(knji);
 				
 				Pacijent pacijent = new Pacijent(ime, prezime, jmbg, adresa, brojTelefona, korisnickoIme, lozinka, pol,izabraniLekar,x);
@@ -180,14 +199,15 @@ public class DomZdravlja {
 			File sestreFile = new File("src/fajlovi/" + medsestra);
 			BufferedReader br = new BufferedReader(new FileReader(sestreFile));
 			String line = null;
-			Pacijent ime= pacijenti.get(0);
-			Lekar imelekara= lekar.get(0);
+
 			while ((line = br.readLine()) != null) {
 				String[] split = line.split("\\|");
 				String pacijentime = split[0];
 				Pacijent x=nadjiPacijenta(pacijentime);
 				String opis = split[1];
-				String status = split[2];
+				String statusint=split[2];
+				
+				status status=pregled.status.toStatus(statusint);
 				String idPregleda = split[3];
 				String termin = split[4];
 				String doktorime= split[5];
@@ -207,21 +227,20 @@ public class DomZdravlja {
 			File sestreFile = new File("src/fajlovi/" + medsestra);
 			BufferedReader br = new BufferedReader(new FileReader(sestreFile));
 			String line = null;
-			Pacijent ime= pacijenti.get(0);
-			Lekar imelekara= lekar.get(0);
+			
 			while ((line = br.readLine()) != null) {
 				String[] split = line.split("\\|");
 				String pacijentime = split[3];
 				Pacijent x=nadjiPacijenta(pacijentime);
 				String broj = split[0];
 				String datum = split[1];
-				String kategorija = split[2];
+				int kategorijaint = kategorija.toInt(split[2]);
+				kategorija kategorija1=kategorija.toKategorija(kategorijaint);
 				
 				
 				
 				
-				
-				Knjizica knjizice = new Knjizica(broj, datum, kategorija, x );
+				Knjizica knjizice = new Knjizica(broj, datum, kategorija1, x );
 				knjizica.add(knjizice);
 			}
 			br.close();
@@ -243,11 +262,15 @@ public class DomZdravlja {
 				String brojTelefona = split[4];
 				String korisnickoIme = split[5];
 				String lozinka = split[6];
-				String pol = split[7];
-				String sluzba= split[8];
+				
+				int polInt = Pol.toInt(split[7]);
+				Pol pol=Pol.fromInt(polInt);
+				int sluzbaint=sluzba.toInt(split[8]);
+				
+				sluzba sluzbe=sluzba.fromInt(sluzbaint);
 				String platastring=split[9];
 				int plata=Integer.parseInt(platastring);
-				MedSestra sestra = new MedSestra(ime, prezime, jmbg, adresa, brojTelefona, korisnickoIme, lozinka, pol,sluzba, plata);
+				MedSestra sestra = new MedSestra(ime, prezime, jmbg, adresa, brojTelefona, korisnickoIme, lozinka, pol,sluzbe, plata);
 				sestre.add(sestra);
 			}
 			br.close();
@@ -265,8 +288,8 @@ public class DomZdravlja {
 			String sadrzaj = "";
 			for (MedSestra sestra : sestre) {
 				sadrzaj += sestra.getIme() + "|" + sestra.getPrezime() + "|" + sestra.getJmbg() + "|"
-						+ sestra.getAdresa() + "|" + sestra.getBrojTelefona()+"|" + sestra.getKorisnickoIme()+"|" + sestra.getLozinka()+"|" + sestra.getPol()+
-						"|"+sestra.getPlata()+"\n";
+						+ sestra.getAdresa() + "|" + sestra.getBrojTelefona()+"|" + sestra.getKorisnickoIme()+"|" + sestra.getLozinka()+"|" + sestra.getPol()+"|"+sestra.getsluzba()
+						+"|"+sestra.getPlata()+"\n";
 			}
 			br.write(sadrzaj);
 			br.close();
@@ -276,21 +299,76 @@ public class DomZdravlja {
 	}
 	
 	
-	public void snimiLekare(String medsestra) {
+	public void snimiLekare() {
 		try {
-			File file = new File("src/fajlovi/" + medsestra);
+			File file = new File("src/fajlovi/lekar.txt" );
 			BufferedWriter br = new BufferedWriter(new FileWriter(file));
 			String sadrzaj = "";
 			for (Lekar lekari : lekar) {
 				sadrzaj += lekari.getIme() + "|" + lekari.getPrezime() + "|" + lekari.getJmbg() + "|"
-						+ lekari.getAdresa() + "|" + lekari.getBrojTelefona()+"|" + lekari.getKorisnickoIme()+"|" + lekari.getLozinka()+"|" + lekari.getPol()+
-						"|"+lekari.getPlata()+"|"+lekari.getSpecijalizacija()+"\n";
+						+ lekari.getAdresa() + "|" + lekari.getBrojTelefona()+"|" + lekari.getKorisnickoIme()+"|" + lekari.getLozinka()+"|" + lekari.getPol()
+					+"|"+lekari.getSluzba()+"|"+lekari.getPlata()+"|"+lekari.getSpecijalizacija()+"\n";
 			}
 			br.write(sadrzaj);
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void snimiPacijenta() {
+		try {
+			File file = new File("src/fajlovi/Pacijent.txt" );
+			BufferedWriter br = new BufferedWriter(new FileWriter(file));
+			String sadrzaj = "";
+			for (Pacijent pacijet : pacijenti) {
+				sadrzaj += pacijet.getIme() + "|" + pacijet.getPrezime() + "|" + pacijet.getJmbg() + "|"
+						+ pacijet.getAdresa() + "|" + pacijet.getBrojTelefona()+"|" + pacijet.getKorisnickoIme()+"|" + pacijet.getLozinka()+"|" + pacijet.getPol()
+					+"|"+pacijet.getIzabraniLekar()+"|"+pacijet.getPodaciOKnjizici()+"\n";
+			}
+			br.write(sadrzaj);
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void snimiKnjizice() {
+		try {
+			File file = new File("src/fajlovi/knjizica.txt" );
+			BufferedWriter br = new BufferedWriter(new FileWriter(file));
+			String sadrzaj = "";
+			for (Knjizica knjizcia : knjizica) {
+				sadrzaj += knjizcia.getBroj() + "|" + knjizcia.getDatumIsteka() + "|" + knjizcia.getKategorija() + "|"
+						+ knjizcia.getPacijent().toStringp() +"\n";
+			}
+			br.write(sadrzaj);
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void snimiPreglede() {
+		try {
+			File file = new File("src/fajlovi/pregledi.txt" );
+			BufferedWriter br = new BufferedWriter(new FileWriter(file));
+			String sadrzaj = "";
+			for (Pregled pregled : pregledi) {
+				sadrzaj += pregled.getPacijent().getKorisnickoIme() + "|" + pregled.getOpis() +"|" + pregled.getStatus() + "|" + pregled.getIdPregleda() + "|"
+						+ pregled.getTermin()+"|" + pregled.getDoktor().getKorisnickoIme()  +"\n";
+			}
+			br.write(sadrzaj);
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static int getRandomNumberInRange(int min, int max) {
+
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
 	}
 	 public void DodajSestru() throws IOException {
  		
@@ -367,9 +445,9 @@ public class DomZdravlja {
 	 		
 	 		BufferedWriter bw = new BufferedWriter( new FileWriter("src/fajlovi/Pacijent.txt",true) );
 	 		Scanner strInput = new Scanner(System.in);
-	 		Lekar imelekara= lekar.get(0);
+	 		
 	 		String ime, prezime, jmbg, adresa, brojTelefona, korisnickoIme, lozinka, pol;
-	 		Knjizica broj= knjizica.get(0);
+	 		
 	 		System.out.print("Unesite ime: ");
 	 		ime= strInput.nextLine();
 	 		System.out.print("Unesite prezime: ");
@@ -388,7 +466,7 @@ public class DomZdravlja {
 	 		pol = strInput.nextLine(); 
 	 		
 	 		
-	 		bw.write(ime+"|"+prezime+"|"+jmbg+"|"+adresa+"|"+brojTelefona+"|"+korisnickoIme+"|"+lozinka+"|"+pol+"|"+imelekara.getIme()+"|"+broj.getBroj());
+	 		//bw.write(ime+"|"+prezime+"|"+jmbg+"|"+adresa+"|"+brojTelefona+"|"+korisnickoIme+"|"+lozinka+"|"+pol+"|"+imelekara.getIme()+"|"+broj.getBroj());
 	 		bw.flush();
 	 		bw.newLine();
 	 		bw.close();		
@@ -514,9 +592,8 @@ public class DomZdravlja {
 	 		
 	 		BufferedWriter bw = new BufferedWriter( new FileWriter("src/fajlovi/pregledi.txt",true) );
 	 		Scanner strInput = new Scanner(System.in);
-	 		Pacijent ime= pacijenti.get(0);
-	 		Lekar imelekara= lekar.get(0);
-			System.out.println (ime.getPrezime());
+	 	
+			
 	 		String opis,idPregleda,status,termin;
 	 		System.out.print("Unesite ID pregelda: ");
 	 		idPregleda= strInput.nextLine();
@@ -525,7 +602,7 @@ public class DomZdravlja {
 	 		status = "Zakazan" ;
 	 		System.out.print("Unesite termin: ");
 	 		termin = strInput.nextLine();   
-	 		bw.write(ime.getKorisnickoIme()+"|"+opis+"|"+status+"|"+idPregleda+"|"+termin+"|"+imelekara.getKorisnickoIme()+"|");
+	 		//bw.write(ime.getKorisnickoIme()+"|"+opis+"|"+status+"|"+idPregleda+"|"+termin+"|"+imelekara.getKorisnickoIme()+"|");
 	 		bw.flush();
 	 		bw.newLine();
 	 		bw.close();		
@@ -536,7 +613,7 @@ public class DomZdravlja {
 	 		
 	 		BufferedWriter bw = new BufferedWriter( new FileWriter("src/fajlovi/knjizica.txt",true) );
 	 		Scanner strInput = new Scanner(System.in);
-	 		Pacijent ime= pacijenti.get(0);
+	 	
 	 		String datumIsteka,kategorija, broj;
 	 		System.out.print("Unesite broj knjizice: ");
 	 		broj= strInput.nextLine();
@@ -544,7 +621,7 @@ public class DomZdravlja {
 	 		datumIsteka = strInput.nextLine();
 	 		System.out.print("Unesite kategoriju: ");
 	 		kategorija = strInput.nextLine();   
-	 		bw.write(broj+"|"+datumIsteka+"|"+kategorija+"|"+ime.getKorisnickoIme());
+	 		//bw.write(broj+"|"+datumIsteka+"|"+kategorija+"|"+ime.getKorisnickoIme());
 	 		bw.flush();
 	 		bw.newLine();
 	 		bw.close();		
