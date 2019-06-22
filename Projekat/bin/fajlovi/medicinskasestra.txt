@@ -3,3 +3,4 @@ Marko|Markovic|123123|adresa|213123123|marko|markovic123|MUSKI|Sluzbazatehnickep
 uros|urosevic|123123|adresa|213123|ime|ime|MUSKI|Sluzbazatehnickeposlove|123123
 lazar|laza|123123|123123|123123|lazar|123|MUSKI|Sluzbazatehnickeposlove|123123
 admin|admin|123|123|123|123|123|ZENSKI|SluzbaOpsteMedicine|12313
+123|123|123|123|123|123|123|ZENSKI|SluzbaOpsteMedicine|123

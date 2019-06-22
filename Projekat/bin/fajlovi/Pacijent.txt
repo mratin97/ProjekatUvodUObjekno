@@ -1,3 +1,2 @@
 lazar|laza|123123|123123|123123|korisnik|123|MUSKI|marko|null
-lazar|laza|123123|123123|123123|laza|123|MUSKI|marko|null
 mare|mare|123123|123123|123123|mare|123|MUSKI|mita|null

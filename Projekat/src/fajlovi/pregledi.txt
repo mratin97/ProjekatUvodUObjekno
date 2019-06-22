@@ -4,3 +4,4 @@ korisnik|123|Zatrazen|286|123|marko
 korisnik|123|Zatrazen|649|123|marko
 korisnik|opis|Zatrazen|81|12/12/12|marko
 korisnik|opis1|Zavrsen|968|123|marko
+korisnik|opis|Zakazan|123123|20/20/20|marko

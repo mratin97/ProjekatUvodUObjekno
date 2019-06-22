@@ -50,7 +50,7 @@ public class PacijentForme extends JFrame {
 	private DomZdravlja dom;
 	private MedSestra sestra;
 	
-	public PacijentForme(DomZdravlja dom) {
+	public PacijentForme(DomZdravlja dom,MedSestra sestra) {
 		this.dom = dom;
 		this.pacijent= pacijent;
 		this.sestra = sestra;

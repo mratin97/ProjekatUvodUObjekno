@@ -42,7 +42,7 @@ public class PrikazPacijenata extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initGUI();
-		
+		initActions();
 	}
 	
 	private void initGUI() {
@@ -86,15 +86,17 @@ public class PrikazPacijenata extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(PacijentiTabela);
 		add(scrollPane, BorderLayout.CENTER);
 	
-	btnAdd.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			PacijentForme sf = new PacijentForme(dom);
-			sf.setVisible(true);
-		}
-	});
 	
+	}
+	private void initActions() {
+	btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PacijentForme sf = new PacijentForme (dom , null);
+				sf.setVisible(true);
+			}
+		});
 	btnEdit.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -106,7 +108,7 @@ public class PrikazPacijenata extends JFrame {
 				String korisnickoIme = model.getValueAt(red, 5).toString();
 				Pacijent pacijent = dom.nadjiPacijenta(korisnickoIme);
 				if(pacijent != null) {
-					PacijentForme zf = new PacijentForme(dom);
+					PacijentForme zf = new PacijentForme(dom, null);
 					zf.setVisible(true);
 				}else {
 					JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog prodavca!", "Greska", JOptionPane.ERROR_MESSAGE);
@@ -129,7 +131,7 @@ public class PrikazPacijenata extends JFrame {
 					if(izbor == JOptionPane.YES_OPTION) {
 						dom.getPacijent().remove(pacijent);
 						model.removeRow(red);
-						dom.snimiZaposlene("Pacijent.txt");
+						dom.snimiPacijenta();
 					}
 				}else {
 					JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabranog prodavca!", "Greska", JOptionPane.ERROR_MESSAGE);
